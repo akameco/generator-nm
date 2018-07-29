@@ -100,7 +100,7 @@ module.exports = class extends Generator {
       mv('_package.json', 'package.json')
       mv('github/ISSUE_TEMPLATE.md', '.github/ISSUE_TEMPLATE.md')
       mv('github/PULL_REQUEST_TEMPLATE.md', '.github/PULL_REQUEST_TEMPLATE.md')
-      mv('flow/jest_v22.x.x.js', 'flow-typed/npm/jest_v22.x.x.js')
+      mv('flow/jest_v23.x.x.js', 'flow-typed/npm/jest_v23.x.x.js')
     })
   }
   git() {
