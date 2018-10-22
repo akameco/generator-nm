@@ -1,6 +1,6 @@
 {
   "name": "@akameco/generator-nm",
-  "version": "0.0.0-development",
+  "version": "5.8.1",
   "description": "Scaffold out a node module",
   "license": "MIT",
   "repository": "akameco/generator-nm",
@@ -47,10 +47,10 @@
     "eslint-config-precure": "^0.10.1",
     "pify": "^3.0.0",
     "prettier": "^1.6.1",
-    "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.7.0",
+    "semantic-release": "^11.0.2",
     "travis-deploy-once": "^4.3.1",
-    "semantic-release": "^11.0.2"
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.7.0"
   },
   "ava": {
     "failWithoutAssertions": false
