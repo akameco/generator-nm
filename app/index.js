@@ -22,8 +22,9 @@ module.exports = class extends Generator {
       desc: 'Add a coverage',
     })
   }
-  init() {
-    return this.prompt([
+  // eslint-disable-next-line max-lines-per-function
+  async init() {
+    const props = await this.prompt([
       {
         name: 'moduleName',
         message: 'What do you want to name your module?',
@@ -49,59 +50,58 @@ module.exports = class extends Generator {
         default: Boolean(this.options.cov),
         when: () => this.options.cov === undefined,
       },
-    ]).then(props => {
-      const or = (option, prop) =>
-        this.options[option] === undefined
-          ? props[prop || option]
-          : this.options[option]
+    ])
+    const or = (option, prop) =>
+      this.options[option] === undefined
+        ? props[prop || option]
+        : this.options[option]
 
-      const cli = or('cli')
-      const cov = or('cov')
+    const cli = or('cli')
+    const cov = or('cov')
 
-      const repoName = utils.repoName(props.moduleName)
+    const repoName = utils.repoName(props.moduleName)
 
-      const tpl = {
-        moduleName: props.moduleName,
-        moduleDescription: props.moduleDescription,
-        camelModuleName: _s.camelize(repoName),
-        repoName,
-        cli,
-        cov,
-      }
+    const tpl = {
+      moduleName: props.moduleName,
+      moduleDescription: props.moduleDescription,
+      camelModuleName: _s.camelize(repoName),
+      repoName,
+      cli,
+      cov,
+    }
 
-      const mv = (from, to) => {
-        this.fs.move(this.destinationPath(from), this.destinationPath(to))
-      }
+    const mv = (from, to) => {
+      this.fs.move(this.destinationPath(from), this.destinationPath(to))
+    }
 
+    this.fs.copyTpl(
+      [`${this.templatePath()}/**`, '!**/cli.js'],
+      this.destinationPath(),
+      tpl
+    )
+
+    if (cli) {
       this.fs.copyTpl(
-        [`${this.templatePath()}/**`, '!**/cli.js'],
-        this.destinationPath(),
+        this.templatePath('cli.js'),
+        this.destinationPath('cli.js'),
         tpl
       )
+    }
 
-      if (cli) {
-        this.fs.copyTpl(
-          this.templatePath('cli.js'),
-          this.destinationPath('cli.js'),
-          tpl
-        )
-      }
-
-      mv('all-contributorsrc', '.all-contributorsrc')
-      mv('editorconfig', '.editorconfig')
-      mv('eslintrc', '.eslintrc')
-      mv('flowconfig', '.flowconfig')
-      mv('gitattributes', '.gitattributes')
-      mv('gitignore', '.gitignore')
-      mv('travis.yml', '.travis.yml')
-      mv('prettierrc', '.prettierrc')
-      mv('prettierignore', '.prettierignore')
-      mv('eslintignore', '.eslintignore')
-      mv('_package.json', 'package.json')
-      mv('github/ISSUE_TEMPLATE.md', '.github/ISSUE_TEMPLATE.md')
-      mv('github/PULL_REQUEST_TEMPLATE.md', '.github/PULL_REQUEST_TEMPLATE.md')
-      mv('flow/jest_v23.x.x.js', 'flow-typed/npm/jest_v23.x.x.js')
-    })
+    mv('all-contributorsrc', '.all-contributorsrc')
+    mv('editorconfig', '.editorconfig')
+    mv('eslintrc', '.eslintrc')
+    mv('flowconfig', '.flowconfig')
+    mv('gitattributes', '.gitattributes')
+    mv('gitignore', '.gitignore')
+    mv('travis.yml', '.travis.yml')
+    mv('prettierrc', '.prettierrc')
+    mv('prettierignore', '.prettierignore')
+    mv('eslintignore', '.eslintignore')
+    mv('_package.json', 'package.json')
+    mv('github/ISSUE_TEMPLATE.md', '.github/ISSUE_TEMPLATE.md')
+    mv('github/PULL_REQUEST_TEMPLATE.md', '.github/PULL_REQUEST_TEMPLATE.md')
+    mv('flow/jest_v23.x.x.js', 'flow-typed/npm/jest_v23.x.x.js')
   }
   git() {
     this.spawnCommandSync('git', ['init'])

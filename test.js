@@ -55,9 +55,9 @@ test.serial('CLI option', async () => {
   await pify(generator.run.bind(generator))()
 
   assert.file('cli.js')
-  assert.fileContent('package.json', /"bin":/)
-  assert.fileContent('package.json', /"bin": "cli.js"/)
-  assert.fileContent('package.json', /"meow"/)
+  assert.fileContent('package.json', /"bin":/u)
+  assert.fileContent('package.json', /"bin": "cli.js"/u)
+  assert.fileContent('package.json', /"meow"/u)
 })
 
 test('parse scoped package names', t => {
@@ -88,8 +88,8 @@ test.serial('prompts for description', async () => {
 
   await pify(generator.run.bind(generator))()
 
-  assert.fileContent('package.json', /"description": "foo",/)
-  assert.fileContent('readme.md', /> foo/)
+  assert.fileContent('package.json', /"description": "foo",/u)
+  assert.fileContent('readme.md', /> foo/u)
 })
 
 test.serial('defaults to superb description', async () => {
@@ -101,6 +101,6 @@ test.serial('defaults to superb description', async () => {
 
   await pify(generator.run.bind(generator))()
 
-  assert.fileContent('package.json', /"description": "My .+ module",/)
-  assert.fileContent('readme.md', /> My .+ module/)
+  assert.fileContent('package.json', /"description": "My .+ module",/u)
+  assert.fileContent('readme.md', /> My .+ module/u)
 })
