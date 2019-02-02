@@ -37,17 +37,17 @@
   ],
   "dependencies": {
     "is-scoped": "^1.0.0",
-    "superb": "^2.0.0",
-    "underscore.string": "^3.3.4",
-    "yeoman-generator": "^2.0.1"
+    "superb": "^3.0.0",
+    "underscore.string": "^3.3.5",
+    "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "eslint": "^5.7.0",
-    "eslint-config-precure": "^3.2.0",
-    "pify": "^3.0.0",
-    "prettier": "^1.14.3",
-    "yeoman-assert": "^3.0.0",
+    "ava": "^1.2.0",
+    "eslint": "^5.13.0",
+    "eslint-config-precure": "^3.5.0",
+    "pify": "^4.0.1",
+    "prettier": "^1.16.3",
+    "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.9.1"
   },
   "ava": {

@@ -34,7 +34,7 @@ module.exports = class extends Generator {
       {
         name: 'moduleDescription',
         message: 'What is your module description?',
-        default: `My ${superb()} module`,
+        default: `My ${superb.random()} module`,
       },
       {
         name: 'cli',
