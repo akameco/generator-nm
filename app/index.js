@@ -4,22 +4,22 @@ const _s = require('underscore.string')
 const utils = require('./utils')
 
 module.exports = class extends Generator {
-  constructor(a, b) {
-    super(a, b)
+  constructor(...args) {
+    super(...args)
 
     this.option('org', {
-      type: 'string',
-      desc: 'Publish to a GitHub organization account',
+      type: String,
+      description: 'Publish to a GitHub organization account',
     })
 
     this.option('cli', {
-      type: 'boolean',
-      desc: 'Add a CLI',
+      type: Boolean,
+      description: 'Add a CLI',
     })
 
     this.option('cov', {
-      type: 'boolean',
-      desc: 'Add a coverage',
+      type: Boolean,
+      description: 'Add a coverage',
     })
   }
   // eslint-disable-next-line max-lines-per-function
